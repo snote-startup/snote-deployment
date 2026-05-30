@@ -16,7 +16,9 @@ services:
     image: t8y2/dbx
     restart: on-failure:5
     volumes:
-      - dbx-data:/app/data
+      - dbx:/app/data
+    networks:
+      - internal
 
   api:
     container_name: snote-api
