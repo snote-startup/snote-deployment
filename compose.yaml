@@ -18,9 +18,7 @@ services:
       DATABASE_URL: postgres://${PG_USER}:${PG_PASS}@database/${PG_DB}
 
       JWT_SECRET: ${JWT_SECRET}
-      JWT_EXPIRED_IN: ${JWT_EXPIRED_IN}
       JWT_REFRESH_SECRET: ${JWT_SECRET}
-      JWT_REFRESH_EXPIRED_IN: ${JWT_EXPIRED_IN}
     image: ${REGISTRY}/api:latest
     restart: always
     depends_on:
