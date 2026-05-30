@@ -2,7 +2,7 @@ services:
   database:
     container_name: snote-database
     image: postgres:latest
-    restart: always
+    restart: on-failure:5
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASS}
@@ -11,6 +11,12 @@ services:
       - database:/var/lib/postgresql
     networks:
       - internal
+  dbx:
+    container_name: snote-dbx
+    image: t8y2/dbx
+    restart: on-failure:5
+    volumes:
+      - dbx-data:/app/data
 
   api:
     container_name: snote-api
@@ -29,7 +35,7 @@ services:
   cloudflare-tunnel:
     container_name: snote-cloudflare
     image: cloudflare/cloudflared
-    restart: unless-stopped
+    restart: on-failure:5
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
@@ -44,4 +50,7 @@ networks:
 volumes:
   database:
     name: snote-database
+    external: true
+  dbx:
+    name: snote-dbx
     external: true
