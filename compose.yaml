@@ -1,0 +1,49 @@
+services:
+  database:
+    container_name: snote-database
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - database:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  api:
+    container_name: snote-api
+    environment:
+      DATABASE_URL: postgres://${PG_USER}:${PG_PASS}@database/${PG_DB}
+
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRED_IN: ${JWT_EXPIRED_IN}
+      JWT_REFRESH_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_EXPIRED_IN: ${JWT_EXPIRED_IN}
+    image: ${REGISTRY}/api:latest
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - internal
+
+  cloudflare-tunnel:
+    container_name: snote-cloudflare
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - internal
+
+networks:
+  internal:
+    name: snote-network
+    external: true
+
+volumes:
+  database:
+    name: snote-database
+    external: true
