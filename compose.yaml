@@ -25,8 +25,18 @@ services:
     environment:
       DATABASE_URL: postgres://${PG_USER}:${PG_PASS}@database/${PG_DB}
 
+      ORIGINS: ${ORIGINS}
+
       JWT_SECRET: ${JWT_SECRET}
       JWT_REFRESH_SECRET: ${JWT_SECRET}
+
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      S3_ENDPOINT: ${S3_ENDPOINT}
+      S3_BUCKET: ${S3_BUCKET}
+
+      ASSEMBLY_AI_API_KEY: ${ASSEMBLY_AI_API_KEY}
     image: ${REGISTRY}/api:latest
     restart: always
     depends_on:
