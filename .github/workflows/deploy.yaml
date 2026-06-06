@@ -27,6 +27,10 @@ jobs:
 
       ASSEMBLY_AI_API_KEY: ${{ secrets.ASSEMBLY_AI_API_KEY }}
 
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      CHAT_CONTEXT_HISTORY_SIZE: ${{ secrets.CHAT_CONTEXT_HISTORY_SIZE }}
+      CHAT_CONTEXT_TRANSCRIPT_SIZE: ${{ secrets.CHAT_CONTEXT_TRANSCRIPT_SIZE }}
+
       CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
     steps:
       - name: Checkout Develop
