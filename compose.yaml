@@ -25,6 +25,8 @@ services:
     environment:
       DATABASE_URL: postgres://${PG_USER}:${PG_PASS}@database/${PG_DB}
 
+      BASE_URL: ${API_URL}
+
       ORIGINS: ${ORIGINS}
 
       JWT_SECRET: ${JWT_SECRET}
@@ -35,6 +37,10 @@ services:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_ENDPOINT_URL: ${AWS_ENDPOINT_URL}
       S3_BUCKET: ${S3_BUCKET}
+
+      PAYOS_CLIENT_ID: ${PAYOS_CLIENT_ID}
+      PAYOS_API_KEY: ${PAYOS_API_KEY}
+      PAYOS_CHECKSUM_KEY: ${PAYOS_CHECKSUM_KEY}
 
       ASSEMBLY_AI_API_KEY: ${ASSEMBLY_AI_API_KEY}
 
