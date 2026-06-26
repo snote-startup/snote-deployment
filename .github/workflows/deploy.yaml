@@ -27,7 +27,7 @@ jobs:
       AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
       S3_BUCKET: ${{ secrets.S3_BUCKET }}
 
-      PAYMENT_REDIRECT_URL: ${{ PAYMENT_REDIRECT_URL }}
+      PAYMENT_REDIRECT_URL: ${{ secrets.PAYMENT_REDIRECT_URL }}
       PAYOS_CLIENT_ID: ${{ secrets.PAYOS_CLIENT_ID }}
       PAYOS_API_KEY: ${{ secrets.PAYOS_API_KEY }}
       PAYOS_CHECKSUM_KEY: ${{ secrets.PAYOS_CHECKSUM_KEY }}
