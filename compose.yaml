@@ -23,6 +23,10 @@ services:
   api:
     container_name: snote-api
     environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://tempo:4317"
+      OTEL_EXPORTER_OTLP_TRACES_PROTOCOL: "grpc"
+      OTEL_SERVICE_NAME: "snote-api"
+
       DATABASE_URL: postgres://${PG_USER}:${PG_PASS}@database/${PG_DB}
 
       BASE_URL: ${API_URL}
